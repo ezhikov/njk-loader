@@ -119,16 +119,25 @@ This can be worked around in various ways. You can maintain such flat file struc
 
 ```
 src
-├── assets                                                                      │   └── sky.jpg
-├── js                                                                          │   └── main.js                                                                 ├── macros                                                                      │   └── checkbox.njk
-├── pages                                                                       │   └── index.njk
-├── partials                                                                    │   ├── about-assets.njk
+├── assets
+│   └── sky.jpg
+├── js
+│   └── main.js
+├── macros
+│   └── checkbox.njk
+├── pages
+│   └── index.njk
+├── partials
+│   ├── about-assets.njk
 │   ├── about-macros.njk
 │   ├── about-pages.njk
 │   ├── about-partials.njk
 │   ├── about-styles.njk
 │   └── about-templates.njk
-├── styles                                                                      │   └── main.scss                                                               └── templates                                                                     └── base.njk
+├── styles
+│   └── main.scss
+└── templates
+  └── base.njk
 ```
 
 This way, when you reference image this way: `<img src="../assets/sky.jpg"/>` in partial (include) or macros, it will allways be found.
