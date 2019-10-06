@@ -2,11 +2,18 @@ const nunjucks = require("nunjucks");
 const path = require("path");
 const fs = require("fs");
 const utils = require("loader-utils");
+const validateOptions = require("schema-utils");
+
+const schema = require("./options-schema.json");
 
 function loader(content, map, meta) {
   const context = this;
 
   const options = utils.getOptions(context);
+  validateOptions(schema, options, {
+    name: "nunjucks-loader",
+    baseDataPath: "options"
+  });
 
   const callback = this.async();
   const MyLoader = nunjucks.Loader.extend({
@@ -23,7 +30,7 @@ function loader(content, map, meta) {
       };
     }
   });
-  const env = new nunjucks.Environment(new MyLoader());
+  const env = new nunjucks.Environment(new MyLoader(), options.config);
   if (options.filters) {
     delete require.cache[require.resolve(options.filters)];
     this.addDependency(options.filters);
