@@ -1,9 +1,13 @@
 const nunjucks = require("nunjucks");
 const path = require("path");
 const fs = require("fs");
+const utils = require("loader-utils");
 
 function loader(content, map, meta) {
   const context = this;
+
+  const options = utils.getOptions(context);
+
   const callback = this.async();
   const MyLoader = nunjucks.Loader.extend({
     async: false,
@@ -20,6 +24,36 @@ function loader(content, map, meta) {
     }
   });
   const env = new nunjucks.Environment(new MyLoader());
+  if (options.filters) {
+    delete require.cache[require.resolve(options.filters)];
+    this.addDependency(options.filters);
+    const filters = require(options.filters);
+
+    for (const name in filters) {
+      env.addFilter(name, filters[name]);
+    }
+  }
+  if (options.extensions) {
+    delete require.cache[require.resolve(options.extensions)];
+    this.addDependency(options.extensions);
+    const extensions = require(options.extensions);
+
+    for (const name in extensions) {
+      const ext =
+        typeof extensions[name] === "function"
+          ? new extensions[name]()
+          : extensions[name];
+      env.addExtension(name, ext);
+    }
+  }
+  if (options.globals) {
+    delete require.cache[require.resolve(options.globals)];
+    this.addDependency(options.globals);
+    const globals = require(options.globals);
+    for (const name in globals) {
+      env.addGlobal(name, globals[name]);
+    }
+  }
   const template = new nunjucks.Template(content, env, this.resourcePath);
   template.render({}, function(error, result) {
     callback(error || null, result, map, meta);
