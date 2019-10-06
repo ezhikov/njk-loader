@@ -1,0 +1,49 @@
+{
+  "type": "object",
+  "properties": {
+    "filters": {
+      "description": "Path to file with custom filters.",
+      "type": "string"
+    },
+    "extensions": {
+      "description": "Path to file with extensions.",
+      "type": "string"
+    },
+    "globals": {
+      "description": "Path to file with globals.",
+      "type": "string"
+    },
+    "config": {
+      "type": "object",
+      "properties": {
+        "autoescape": {
+          "type": "boolean",
+          "description": "Controls if output with dangerous characters are escaped automatically"
+        },
+        "throwOnUndefined": {
+          "type": "boolean",
+          "description": "Throw errors when outputting a null/undefined value"
+        },
+        "trimBlocks": {
+          "type": "boolean",
+          "description": "Automatically remove trailing newlines from a block/tag"
+        },
+        "lstripBlocks": {
+          "type": "boolean",
+          "description": "Automatically remove leading whitespace from a block/tag"
+        },
+        "tags": {
+          "type": "object",
+          "properties": {
+            "blockStart": { "type": "string" },
+            "blockEnd": { "type": "string" },
+            "variableStart": { "type": "string" },
+            "variableEnd": { "type": "string" },
+            "commentStart": { "type": "string" },
+            "commentEnd": { "type": "string" }
+          }
+        }
+      }
+    }
+  }
+}
