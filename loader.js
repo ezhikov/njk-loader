@@ -4,6 +4,7 @@ const fs = require("fs");
 
 function loader(content, map, meta) {
   const context = this;
+  const callback = this.async();
   const MyLoader = nunjucks.Loader.extend({
     async: false,
     resolve(from, to) {
@@ -20,7 +21,9 @@ function loader(content, map, meta) {
   });
   const env = new nunjucks.Environment(new MyLoader());
   const template = new nunjucks.Template(content, env, this.resourcePath);
-  return template.render();
+  template.render({}, function(error, result) {
+    callback(error || null, result, map, meta);
+  });
 }
 
 module.exports = loader;
