@@ -1,0 +1,16 @@
+{
+  "name": "nunjucks-loader",
+  "version": "0.1.0",
+  "description": "nunjucks template loader for use with html-webpack-plugin",
+  "main": "index.js",
+  "author": "Kirill Popolov",
+  "license": "MIT",
+  "private": false,
+  "peerDependencies": {
+    "nunjucks": "^3.2.0"
+  },
+  "devDependencies": {
+    "prettier": "^1.18.2",
+    "nunjucks": "^3.2.0"
+  }
+}
