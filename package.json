@@ -1,5 +1,5 @@
 {
-  "name": "nunjucks-loader",
+  "name": "shiny-nunjucks-loader",
   "version": "0.1.0",
   "description": "nunjucks template loader for use with html-webpack-plugin",
   "main": "index.js",
