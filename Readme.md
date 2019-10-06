@@ -109,6 +109,38 @@ This options should be passed to `config` option like this:
 ### Full configuration example
 
 ```js
+{
+  module: {
+    rules: [
+      {
+        test: /\.(njk|html)$/,
+        use: [
+          "html-laoder",
+          {
+            loader: "shiny-nunjucks-loader",
+            options: {
+                filters: path.resolve(__dirname, 'njk-helpers/filters.js'),
+                globals: path.resolve(__dirname, 'njk-helpers/globals.js'),
+                extensions: path.resolve(__dirname, 'njk-helpers/extensions.js),
+                config: {
+                    autoescape: false,
+                    tags: {
+                        blockStart: "<%",
+                        blockEnd: "%>",
+                        variableStart: "<$",
+                        variableEnd: "$>",
+                        commentStart: "<#",
+                        commentEnd: "#>"
+                    }
+                }
+              }
+            }
+          }
+        ]
+      }
+    ];
+  }
+}
 ```
 
 ## Relative paths
