@@ -1,1 +1,1 @@
-# njk-
+Webpack loader for nunjucks templates
