@@ -30,7 +30,7 @@ Then add it to your webpack config.
 {
   module: {
     rules: [
-      { test: /\.(njk|html)$/, use: ["html-laoder", "shiny-nunjucks-loader"] }
+      { test: /\.(njk|html)$/, use: ["html-loader", "shiny-nunjucks-loader"] }
     ];
   }
 }
@@ -42,14 +42,14 @@ It was a bit deceptive to tell that loader is fully configurable. You can config
 
 ### Filters, Globals, Extensions
 
-You define filters, globals and extensions in separate JavaScript files. Be careful - this files should be able to run in same environment your webpack running. Then specify paths to this files in options. Let's say, that you created all three and put them to `njk-helpers` folder. Then your config would look like that:
+You define filters, globals and extensions in separate JavaScript files. Be careful: these files should be able to run in the environment same with your webpack. Then specify paths to this files in options. Let's say, that you created all three and put them to `njk-helpers` folder. Then your config would look like that:
 
 ```js
 
 {
   module: {
     rules: [
-      { test: /\.(njk|html)$/, use: ["html-laoder", {loader: "shiny-nunjucks-loader", options: {
+      { test: /\.(njk|html)$/, use: ["html-loader", {loader: "shiny-nunjucks-loader", options: {
           filters: path.resolve(__dirname, 'njk-helpers/filters.js'),
           globals: path.resolve(__dirname, 'njk-helpers/globals.js'),
           extensions: path.resolve(__dirname, 'njk-helpers/extensions.js)
@@ -59,7 +59,7 @@ You define filters, globals and extensions in separate JavaScript files. Be care
 }
 ```
 
-This files will be watched by webpack, so whenever any of them changes - your templates will be recompiled.
+These files will be watched by webpack, so whenever any of them changes your templates will be recompiled.
 
 ### Configuration options
 
@@ -73,7 +73,7 @@ Available options are (cited from nunjucks docs):
 - `lstripBlocks` (default: false) automatically remove leading whitespace from a block/tag
 - `tags`: (default: see nunjucks syntax) defines the syntax for nunjucks tags. See [Customizing Syntax](https://mozilla.github.io/nunjucks/api.html#customizing-syntax).
 
-This options should be passed to `config` option like this:
+These options should be passed to `config` option like this:
 
 ```js
 {
@@ -82,7 +82,7 @@ This options should be passed to `config` option like this:
       {
         test: /\.(njk|html)$/,
         use: [
-          "html-laoder",
+          "html-loader",
           {
             loader: "shiny-nunjucks-loader",
             options: {
@@ -115,7 +115,7 @@ This options should be passed to `config` option like this:
       {
         test: /\.(njk|html)$/,
         use: [
-          "html-laoder",
+          "html-loader",
           {
             loader: "shiny-nunjucks-loader",
             options: {
