@@ -1,6 +1,6 @@
 {
   "name": "shiny-nunjucks-loader",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "nunjucks template loader for use with html-webpack-plugin",
   "main": "index.js",
   "author": "Kirill Popolov",
