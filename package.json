@@ -10,11 +10,23 @@
     "nunjucks": "^3.2.0"
   },
   "devDependencies": {
+    "husky": "^3.0.8",
+    "lint-staged": "^9.4.2",
     "nunjucks": "^3.2.0",
-    "prettier": "^1.18.2"
+    "prettier": "^1.18.2",
+    "standard-version": "^7.0.0"
   },
   "dependencies": {
     "loader-utils": "^1.2.3",
     "schema-utils": "^2.4.1"
+  },
+  "husky": {
+    "pre-commit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.{js,json,md}": [
+      "prettier --write",
+      "git add"
+    ]
   }
 }
